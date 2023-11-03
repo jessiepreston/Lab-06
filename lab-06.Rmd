@@ -29,8 +29,8 @@ diamonds <- diamonds %>% rename(
 ```{r}
 # Do some preliminary investigations & cleaning
 
-
-
+diamonds <- diamonds %>%
+  filter(length_mm != 0 | width_mm != 0 | depth_mm != 0)
 
 ```
 
@@ -44,21 +44,24 @@ diamonds <- diamonds %>%
 
 # Overall table_mm arithmetic mean?
 
-
+diamonds %>%
+  summarise(mean_table_length = mean(table_mm))
 
 
 
 
 # table_mm arithmetic mean within each clarity category
 
-
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(average_table_length = mean(table_mm))
 
 
 
 
 ```
 
-_Add your comment here_
+_As the clarity increases, the average table length decreases._
 
 ## Exercise 3
 
@@ -71,6 +74,12 @@ _Do derivation on paper, unless you know how to write LaTeX code_
 # Write gmean() command
 
 
+#gmean <- function(x){
+ # n = length(x)
+#  exp(1/n * sum(log(x)))
+#}
+
+#gmean()
 
 ```
 
