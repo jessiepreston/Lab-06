@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jessica Preston" />
 
-<meta name="date" content="2023-11-03" />
+<meta name="date" content="2023-11-04" />
 
 <title>Lab 06 - Functions and iterations</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Lab 06 - Functions and iterations</h1>
 <h4 class="author">Jessica Preston</h4>
-<h4 class="date">2023-11-03</h4>
+<h4 class="date">2023-11-04</h4>
 
 </div>
 
@@ -373,8 +373,13 @@ library(ggplot2)</code></pre>
 <h2>Exercise 1</h2>
 <pre class="r"><code># Do some preliminary investigations &amp; cleaning
 
-diamonds &lt;- diamonds %&gt;%
-  filter(length_mm != 0 | width_mm != 0 | depth_mm != 0)</code></pre>
+ggplot(data = diamonds,
+       mapping = aes(x = width_mm,
+                      y = depth_mm)) +
+  geom_point()</code></pre>
+<p><img src="data:image/png;base64,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/pz2/PZ+OiDj+VGTDOize5vNXA/o8dd/+nWgG+357f10QMbzo6b6TqTXvvqj34l0Tnt+ez8dkPH8qKm+F375R58cPPtwudrMw+ejr/i98Ke057f30wEZz4+a6GOgj45ejenO+j35J74a0xnt+e39dEDG86Om+iTSkz85nM/jlwB98t7hfr51/vmnA9rJ86M8P8pXpOe157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj5rVgErSC85noCNrz2/vpwMynh81q2egO/xnmLP2/PZ+OiDj+VEOKK89v72fDsh4fpQDymvPb++nAzKeH+WA8trz2/vpgIznRzmgvPb89n46IOP5UQ4orz2/vZ8OyHh+lAPKa89v76cDMp4f5YDy2vPb++mAjOdHOaC89vz2fjog4/lRDiivPb+9nw7IeH6UA8prz2/vpwMynh/lgPLa89v76YCM50c5oLz2/PZ+OiDj+VEOKK89v72fDsh4fpQDymvPb++nAzKeH+WA8trz2/vpgIznRzmgvPb89n46IOP5UQ4orz2/vZ8OyHh+lAPKa89v76cDMp4f5YDy2vPb++mAjOdHOaC89vz2fjog4/lRDiivPb+9nw7IeH6UA8prz2/vpwMynh/lgPLa89v76YCM50c5oLz2/PZ+OiDj+VEOKK89v72f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QHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8E1kcev6vOqC89vz2fjog4/mnsVhcuKAOKK89v72fDsh4/kksFhcvqAPKa89v76cDMp5/CovFJQvqgPLa89v76YCM55+CAzpj7fnt/XRAxvNPwQGdsfb89n46IOP5p+CAzlh7fns/HZDx/JPwk0jz1Z7f3k8HZDz/NPwyptlqz2/vpwMynn8ifiH9XLXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB57fnt/XRAxvOjHFBee357Px2Q8fwoB5TXnt/eTwdkPD/KAeW157f30wEZz49yQHnt+e39dEDG86McUF57fns/HZDx/CgHlNee395PB2Q8P8oB5bXnt/fTARnPj3JAee357f10QMbzoxxQXnt+ez8dkPH8KAeU157f3k8HZDw/ygHltee399MBGc+PckB5J/kXv+b13L0w5+/k+VEOKO84/5KfujJ3L8r5S3l+lAPK2+Rf9nP/5u4FOX8rz49yQHlH+Zf+5Om5ezHOX8vzoxxQngOKas9v76cDMg4ozwFFtee399MBGQeUd7BeTQcU0p7f3k8HZBxQ3mY2S/ez/vzt+e39dEDGAcWdDGfnfraffx/eguesPd8BhZ16171yP8vPvxdvwXPWnu+Awmo/9nms+/x78RY8Z+35DijMAYW157f30wEZB5TmgMLa89v76YCMA8pa1O9n9flX2vPb++mA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" width="672" /></p>
+<pre class="r"><code>diamonds &lt;- diamonds %&gt;%
+  filter(length_mm != 0, length_mm &lt; 20, width_mm != 0, width_mm &lt; 20, depth_mm != 0, depth_mm &lt; 20)</code></pre>
 </div>
 <div id="exercise-2" class="section level2">
 <h2>Exercise 2</h2>
@@ -384,7 +389,7 @@ diamonds &lt;- diamonds %&gt;%
 # Overall table_mm arithmetic mean?
 
 diamonds %&gt;%
-  summarise(mean_table_length = mean(table_mm))</code></pre>
+  summarise(mean_table_length = mean(table_mm, na.rm = TRUE))</code></pre>
 <pre><code>## # A tibble: 1 × 1
 ##   mean_table_length
 ##               &lt;dbl&gt;
@@ -393,7 +398,7 @@ diamonds %&gt;%
 
 diamonds %&gt;%
   group_by(clarity) %&gt;%
-  summarise(average_table_length = mean(table_mm))</code></pre>
+  summarise(average_table_length = mean(table_mm, na.rm = TRUE))</code></pre>
 <pre><code>## # A tibble: 8 × 2
 ##   clarity average_table_length
 ##   &lt;ord&gt;                  &lt;dbl&gt;
@@ -418,12 +423,13 @@ code</em></p>
 <pre class="r"><code># Write gmean() command
 
 
-#gmean &lt;- function(x){
- # n = length(x)
-#  exp(1/n * sum(log(x)))
-#}
+gmean &lt;- function(x){
+  n = length(x)
+  exp(1/n * mean(log(x)))
+}
 
-#gmean()</code></pre>
+gmean(diamonds$table_mm)</code></pre>
+<pre><code>## [1] 1.000022</code></pre>
 </div>
 <div id="exercise-5" class="section level2">
 <h2>Exercise 5</h2>
@@ -437,29 +443,88 @@ code</em></p>
 )
 
 
-# Create for loop to test gmean() on the above examples</code></pre>
+# Create for loop to test gmean() on the above examples
+
+for (i in seq_along(test_data)){
+  print(gmean(test_data[[i]]))
+}</code></pre>
+<pre><code>## [1] 1.477313
+## [1] 2.371374
+## [1] 0</code></pre>
+<pre><code>## Warning in log(x): NaNs produced</code></pre>
+<pre><code>## [1] NaN
+## [1] 1</code></pre>
+<pre><code>## Error in log(x): non-numeric argument to mathematical function</code></pre>
 </div>
 <div id="exercise-6" class="section level2">
 <h2>Exercise 6</h2>
 <pre class="r"><code># Copy gmean() from Ex4 and edit it to check the input
 
+gmean &lt;- function(x){
+  
+  if(!is.numeric(x)){
+    warning(&quot;Use numeric values only&quot;)
+    return(NaN)
+  }
+  
+  if( any(x &lt;= 0) ){
+    warning(&quot;Use positive numbers only&quot;)
+    return(NaN)
+  }
+  
+  
+  
+  n = length(x)
+  exp(1/n * mean(log(x)))
+}
 
 
 
+# Copy your code from Ex 5 to test your new command
 
-# Copy your code from Ex 5 to test your new command</code></pre>
+for (i in seq_along(test_data)){
+  print(gmean(test_data[[i]]))
+}</code></pre>
+<pre><code>## [1] 1.477313
+## [1] 2.371374</code></pre>
+<pre><code>## Warning in gmean(test_data[[i]]): Use positive numbers only</code></pre>
+<pre><code>## [1] NaN</code></pre>
+<pre><code>## Warning in gmean(test_data[[i]]): Use positive numbers only</code></pre>
+<pre><code>## [1] NaN</code></pre>
+<pre><code>## Warning in gmean(test_data[[i]]): Use numeric values only</code></pre>
+<pre><code>## [1] NaN</code></pre>
+<pre><code>## Warning in gmean(test_data[[i]]): Use numeric values only</code></pre>
+<pre><code>## [1] NaN</code></pre>
 </div>
 <div id="exercise-7" class="section level2">
 <h2>Exercise 7</h2>
 <pre class="r"><code># Overall table_mm geometic mean?
 
+gmean(diamonds$table_mm[[i]])</code></pre>
+<pre><code>## [1] 2.2572</code></pre>
+<pre class="r"><code># table_mm geometic mean within each clarity category
 
-
-
-
-
-# table_mm geometic mean within each clarity category</code></pre>
-<p><em>Add your comment here</em></p>
+diamonds %&gt;%
+  group_by(clarity) %&gt;%
+  summarise(
+    table_mean = mean(table_mm),
+    table_median = median(table_mm),
+    table_gmean = gmean(table_mm[[i]])
+  )</code></pre>
+<pre><code>## # A tibble: 8 × 4
+##   clarity table_mean table_median table_gmean
+##   &lt;ord&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+## 1 I1            3.91         3.86        3.72
+## 2 SI2           3.71         3.72        2.41
+## 3 SI1           3.40         3.41        2.39
+## 4 VS2           3.25         3.16        2.45
+## 5 VS1           3.20         3.08        2.27
+## 6 VVS2          2.98         2.82        2.23
+## 7 VVS1          2.83         2.66        2.38
+## 8 IF            2.82         2.59        3.05</code></pre>
+<p><em>The table shows that as clarity increases, the average size of
+the table decrease for arithmetic mean length and median length, whilst
+the clarity and geometric mean have a non-linear relationship.</em></p>
 </div>
 <div id="exercise-8-optional" class="section level2">
 <h2>Exercise 8 (optional)</h2>

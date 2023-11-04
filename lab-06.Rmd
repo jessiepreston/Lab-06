@@ -29,8 +29,13 @@ diamonds <- diamonds %>% rename(
 ```{r}
 # Do some preliminary investigations & cleaning
 
+ggplot(data = diamonds,
+       mapping = aes(x = width_mm,
+                      y = depth_mm)) +
+  geom_point()
+
 diamonds <- diamonds %>%
-  filter(length_mm != 0 | width_mm != 0 | depth_mm != 0)
+  filter(length_mm != 0, length_mm < 20, width_mm != 0, width_mm < 20, depth_mm != 0, depth_mm < 20)
 
 ```
 
@@ -45,7 +50,7 @@ diamonds <- diamonds %>%
 # Overall table_mm arithmetic mean?
 
 diamonds %>%
-  summarise(mean_table_length = mean(table_mm))
+  summarise(mean_table_length = mean(table_mm, na.rm = TRUE))
 
 
 
@@ -54,7 +59,7 @@ diamonds %>%
 
 diamonds %>%
   group_by(clarity) %>%
-  summarise(average_table_length = mean(table_mm))
+  summarise(average_table_length = mean(table_mm, na.rm = TRUE))
 
 
 
@@ -74,12 +79,12 @@ _Do derivation on paper, unless you know how to write LaTeX code_
 # Write gmean() command
 
 
-#gmean <- function(x){
- # n = length(x)
-#  exp(1/n * sum(log(x)))
-#}
+gmean <- function(x){
+  n = length(x)
+  exp(1/n * mean(log(x)))
+}
 
-#gmean()
+gmean(diamonds$table_mm)
 
 ```
 
@@ -99,6 +104,9 @@ test_data <- list(
 
 # Create for loop to test gmean() on the above examples
 
+for (i in seq_along(test_data)){
+  print(gmean(test_data[[i]]))
+}
 
 ```
 
@@ -108,13 +116,31 @@ test_data <- list(
 ```{r}
 # Copy gmean() from Ex4 and edit it to check the input
 
-
+gmean <- function(x){
+  
+  if(!is.numeric(x)){
+    warning("Use numeric values only")
+    return(NaN)
+  }
+  
+  if( any(x <= 0) ){
+    warning("Use positive numbers only")
+    return(NaN)
+  }
+  
+  
+  
+  n = length(x)
+  exp(1/n * mean(log(x)))
+}
 
 
 
 # Copy your code from Ex 5 to test your new command
 
-
+for (i in seq_along(test_data)){
+  print(gmean(test_data[[i]]))
+}
 
 
 
@@ -126,21 +152,27 @@ test_data <- list(
 ```{r}
 # Overall table_mm geometic mean?
 
-
+gmean(diamonds$table_mm[[i]])
 
 
 
 
 # table_mm geometic mean within each clarity category
 
-
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(
+    table_mean = mean(table_mm),
+    table_median = median(table_mm),
+    table_gmean = gmean(table_mm[[i]])
+  )
 
 
 
 
 ```
 
-_Add your comment here_
+_The table shows that as clarity increases, the average size of the table decrease for arithmetic mean length and median length, whilst the clarity and geometric mean have a non-linear relationship._
 
 
 ## Exercise 8 (optional)
